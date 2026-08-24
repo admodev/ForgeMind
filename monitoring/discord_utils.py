@@ -1,6 +1,8 @@
-import discord
-from discord.ext import commands
 import os
+import discord
+
+from gpu_monitoring import GetGPUStatus
+from discord.ext import commands
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -24,6 +26,10 @@ async def on_ready():
 @bot.command()
 async def status(ctx):
     await ctx.send("The server status is: statushere")
+
+@bot.command()
+async def gpustatus(ctx):
+    await ctx.send(f"The GPU Status is: {GetGPUStatus()}")
 
 bot.run(BOT_TOKEN)
 
